@@ -20,13 +20,14 @@ import static com.hmdp.utils.RedisConstants.LOGIN_CODE_KEY;
 import static com.hmdp.utils.RedisConstants.LOGIN_CODE_TTL;
 import static com.hmdp.utils.UserHolder.saveUser;
 
-
-
 public class LoginInterceptor implements HandlerInterceptor {
-    @Resource
-    private IUserService userService;
-    @Resource
+
+
     private StringRedisTemplate stringRedisTemplate;
+
+    public LoginInterceptor(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 

@@ -76,11 +76,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         redisTemplate.opsForHash().putAll(LOGIN_USER_KEY+token, userMap);
         redisTemplate.expire(LOGIN_USER_KEY+token,LOGIN_CODE_TTL,TimeUnit.MINUTES);
 
-
-        //将user对象转为Hash存储
-//        存储
-//返回token给客户端
-        return Result.ok(LOGIN_USER_KEY+token);
+        return Result.ok(token);
     }
 
     private User createuser(String phone) {
